@@ -16,7 +16,8 @@ function App() {
     try {
       setError(null);
       const response = await fetch(
-        `http://localhost:8000/risk?lat=${latitude}&lon=${longitude}`
+        // `http://localhost:8000/risk?lat=${latitude}&lon=${longitude}`
+        `https://geovaloralpha-brjuk.ondigitalocean.app/risk?lat=${latitude}&lon=${longitude}`
       );
       if (!response.ok) throw new Error("Risk API response was not OK");
       const json = await response.json();
