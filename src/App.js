@@ -3,6 +3,7 @@
   // const [refCat, setRefCat] = useState("1132008DF4913S0001OA");
 // import proj4 from "proj4";
 import React, { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 function App() {
   const [lat, setLat] = useState("41.409794716611216");
@@ -11,10 +12,12 @@ function App() {
   // const [refCat, setRefCat] = useState("1132008DF4913S0001OA");
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchRiskData = async (latitude, longitude) => {
     try {
       setError(null);
+      setLoading(true);
       const response = await fetch(
         // `http://localhost:8000/risk?lat=${latitude}&lon=${longitude}`
         `https://geovaloralpha-brjuk.ondigitalocean.app/risk?lat=${latitude}&lon=${longitude}`
@@ -26,11 +29,15 @@ function App() {
       setError(err.message);
       setData(null);
     }
+    finally {
+      setLoading(false);
+    }
   };
 
   const geocodeAndFetch = async () => {
     try {
       setError(null);
+      setLoading(true);
       const query = encodeURIComponent(address);
       const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&countrycodes=es&limit=1`;
       const response = await fetch(url, {
@@ -47,6 +54,9 @@ function App() {
       fetchRiskData(lat, lon);
     } catch (err) {
       setError(err.message);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -79,6 +89,7 @@ function App() {
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial" }}>
       <h1>GeoValor Risk Lookup</h1>
+      <p>Only click ONE button ONCE!</p>
 
       <div style={{ marginBottom: "1rem" }}>
         <label>
@@ -134,9 +145,16 @@ function App() {
           />
         </label>
         <button onClick={() => fetchRiskData(lat, lon)} style={{ marginLeft: "1rem" }}>
-          Fetch Risk
+          Get Risk from Coordinates
         </button>
       </div>
+
+      {loading && (
+        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+          <ClipLoader color="#007bff" size={40} />
+          <p>Loading risk data...</p>
+        </div>
+      )}
 
       {error && <div style={{ color: "red", marginTop: "1rem" }}>Error: {error}</div>}
 
