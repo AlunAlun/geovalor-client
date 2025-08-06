@@ -12,8 +12,8 @@ const API_BASE_URL = DEBUG_LOCAL_API
   : process.env.REACT_APP_GEOVALOR_API_URL;
 
 function App() {
-  const [lat, setLat] = useState("41.409794716611216");
-  const [lon, setLon] = useState("2.180390277774108");
+  const [lat, setLat] = useState("41.27270457818908");
+  const [lon, setLon] = useState("2.0520473550222307");
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,6 +28,7 @@ function App() {
       );
       if (!response.ok) throw new Error("Risk API response was not OK");
       const json = await response.json();
+      console.log(json)
       setData(json);
     } catch (err) {
       setError(err.message);
@@ -74,7 +75,7 @@ function App() {
 
       {error && <div style={{ color: "red", marginTop: "1rem" }}>Error: {error}</div>}
 
-      {data && <RiskResults data={data} />}
+      {data && <RiskResults data={data} lat={lat} lon={lon} />}
     </div>
   );
 }

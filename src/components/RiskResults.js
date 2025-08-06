@@ -4,7 +4,7 @@ import FireRisk from "./risk/FireRisk";
 import FloodRisk from "./risk/FloodRisk";
 import DesertificationRisk from "./risk/DesertificationRisk";
 
-function RiskResults({ data }) {
+function RiskResults({ data, lat, lon }) {
   return (
     <div style={{ marginTop: "2rem" }}>
       <h2>Risk Assessment Results</h2>
@@ -19,6 +19,8 @@ function RiskResults({ data }) {
         <FloodRisk
           fluvial={data.fluvial_flood}
           coastal={data.coastal_flood}
+          lat={lat}
+          lon={lon}
         />
       )}
     </div>
