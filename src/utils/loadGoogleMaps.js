@@ -1,27 +1,29 @@
-let isScriptLoaded = false;
+let googleMapsScriptLoadingPromise;
 
 export function loadGoogleMapsScript(apiKey) {
-  return new Promise((resolve, reject) => {
-    if (isScriptLoaded) {
-      resolve(window.google);
-      return;
-    }
+  if (window.google && window.google.maps) {
+    return Promise.resolve(); // Already loaded
+  }
 
-    window.initMap = () => {
-      isScriptLoaded = true;
-      resolve(window.google);
-    };
+  if (!googleMapsScriptLoadingPromise) {
+    googleMapsScriptLoadingPromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector(`script[src*="maps.googleapis.com"]`);
+      if (existingScript) {
+        existingScript.addEventListener("load", resolve);
+        existingScript.addEventListener("error", reject);
+        return;
+      }
 
-    const existingScript = document.getElementById("google-maps");
-
-    if (!existingScript) {
       const script = document.createElement("script");
-      script.id = "google-maps";
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
       script.async = true;
       script.defer = true;
+      script.onload = resolve;
       script.onerror = reject;
-      document.body.appendChild(script);
-    }
-  });
+
+      document.head.appendChild(script);
+    });
+  }
+
+  return googleMapsScriptLoadingPromise;
 }

@@ -23,6 +23,7 @@ function FloodRisk({ fluvial, coastal, lat, lon}) {
           ))}
         </tbody>
       </table>
+      <GoogleMapWithOverlay lat={lat} lng={lon} showCoastal={false} showFluvial={true} />
 
       {/* Coastal Flood Risk */}
       <h3>Coastal Flood Risk</h3>
@@ -56,7 +57,7 @@ function FloodRisk({ fluvial, coastal, lat, lon}) {
       })}
 
       {/* Combined Map View */}
-      <GoogleMapWithOverlay lat={lat} lng={lon} />
+      <GoogleMapWithOverlay lat={lat} lng={lon} showCoastal={true} showFluvial={false} />
     </div>
   );
 }
