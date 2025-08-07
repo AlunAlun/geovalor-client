@@ -6,3 +6,61 @@
 body {
   @apply bg-brand-beige text-brand-dark font-sans;
 }
+
+@layer components {
+  button {
+    @apply bg-brand-green text-brand-dark font-semibold px-4 py-2 rounded-md hover:bg-brand-dark hover:text-white transition;
+  }
+
+  button.danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+
+  .btn-debug {
+    @apply bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded hover:bg-gray-400 transition;
+  }
+
+  table {
+    @apply w-full text-left border border-gray-300 rounded-md overflow-hidden shadow-sm;
+  }
+
+  thead {
+    @apply bg-brand-dark text-white;
+  }
+
+  th, td {
+    @apply p-3;
+  }
+
+  tbody tr:nth-child(even) {
+    @apply bg-brand-beige;
+  }
+
+  tbody tr:nth-child(odd) {
+    @apply bg-white;
+  }
+
+  h1 {
+    @apply text-4xl font-bold text-brand-dark mb-4;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold text-brand-dark mb-3;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold text-brand-dark mb-2;
+  }
+
+  h4 {
+    @apply text-xl font-medium text-brand-dark mb-2;
+  }
+
+  h5 {
+    @apply text-lg font-medium text-brand-dark mb-1;
+  }
+
+  h6 {
+    @apply text-base font-medium text-brand-dark mb-1 uppercase tracking-wide;
+  }
+}

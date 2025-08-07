@@ -3,8 +3,8 @@ import React from "react";
 
 function FireRisk({ fireData }) {
   return (
-    <div style={{ marginTop: "2rem" }}>
-      <h3>Fire Risk (by Period)</h3>
+    <div className="mb-2 rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
+      <h3>Riesgo de Incendio Forestal</h3>
       {["96_05", "06_15"].map((period) => {
         const periodData = fireData[period];
         const imageKey = `image_${period}`;

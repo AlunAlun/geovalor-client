@@ -3,8 +3,8 @@ import React from "react";
 
 function DesertificationRisk({ desertData }) {
   return (
-    <div style={{ marginTop: "2rem" }}>
-      <h3>Desertification Risk</h3>
+    <div className="mb-2 rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
+      <h3>Riesgo Desertificación</h3>
       <p><strong>Risk Level:</strong> {desertData.risk}</p>
       {desertData.img && (
         <img

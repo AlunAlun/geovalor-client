@@ -49,7 +49,7 @@ function SeismicRisk({ seismicData, lat, lon }) {
 
   return (
     <>
-    <div style={{ marginTop: "2rem" }}>
+    <div className="mb-2 rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
       <h3>Peligro sísmico (Norma NCSE-02)</h3>
       <table border="1" cellPadding="6">
         <thead>
@@ -90,8 +90,9 @@ function SeismicRisk({ seismicData, lat, lon }) {
           en un evento sísmico. Se utilizan para el diseño estructural según la norma NCSE-02.
         </p>
       </div>
-    </div>
+    
     <SeismicRiskMap seismicData={seismicData} lat={lat} lon={lon} />
+    </div>
     </>
   );
 }

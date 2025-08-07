@@ -6,7 +6,7 @@ import AddressAutocomplete from "../components/AddressAutocomplete";
 import RiskForm from "../components/RiskForm";
 import RiskResults from "../components/RiskResults";
 
-const DEBUG_LOCAL_API = true;
+const DEBUG_LOCAL_API = false;
 
 const API_BASE_URL = DEBUG_LOCAL_API
   ? "http://127.0.0.1:8000"
@@ -69,12 +69,12 @@ function App() {
 
       {/* Debug Buttons */}
       <div style={{ marginBottom: "1rem" }}>
-        <strong>Debug Risk Types:</strong>
-        <button onClick={() => fetchRiskData(lat, lon)}>All</button>
-        <button onClick={() => fetchRiskData(lat, lon, "fire")}>Fire</button>
-        <button onClick={() => fetchRiskData(lat, lon, "flood")}>Flood</button>
-        <button onClick={() => fetchRiskData(lat, lon, "desert")}>Desertification</button>
-        <button onClick={() => fetchRiskData(lat, lon, "seismic")}>Seismic</button>
+        <span className="text-gray-500">Debug Individual Risk Types:</span>
+        <button className="btn-debug mr-1 ml-1" onClick={() => fetchRiskData(lat, lon)}>All</button>
+        <button className="btn-debug mr-1 ml-1" onClick={() => fetchRiskData(lat, lon, "fire")}>Fire</button>
+        <button className="btn-debug mr-1 ml-1" onClick={() => fetchRiskData(lat, lon, "flood")}>Flood</button>
+        <button className="btn-debug mr-1 ml-1" onClick={() => fetchRiskData(lat, lon, "desert")}>Desertification</button>
+        <button className="btn-debug mr-1 ml-1" onClick={() => fetchRiskData(lat, lon, "seismic")}>Seismic</button>
       </div>
 
       {loading && (

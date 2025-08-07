@@ -20,9 +20,9 @@ function FloodRisk({ fluvial, coastal, lat, lon }) {
     );
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div className="mb-2 rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
       {/* Fluvial Flood Risk */}
-      <h3>Fluvial Flood Risk</h3>
+      <h3>Riesgo Inundación Fluvial</h3>
       {fluvialError ? (
         <p style={{ fontStyle: "italic", color: "red" }}>{fluvialError}</p>
       ) : isValidFluvial ? (
@@ -57,7 +57,7 @@ function FloodRisk({ fluvial, coastal, lat, lon }) {
       )}
 
       {/* Coastal Flood Risk */}
-      <h3>Coastal Flood Risk</h3>
+      <h3 className="mt-10">Riesgo Inundación Costera</h3>
       {isValidCoastal ? (
         ["100", "500"].map((key) => {
           const value = coastal[key];
