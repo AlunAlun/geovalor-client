@@ -36,7 +36,6 @@ function createWmsLayer({ baseUrl, layerName }) {
 
 function GoogleMapWithOverlay({ lat, lng, showFluvial, showCoastal }) {
   const mapRef = useRef(null);
-  console.log(showFluvial)
 
   useEffect(() => {
     loadGoogleMapsScript(API_KEY).then(() => {
@@ -68,7 +67,6 @@ function GoogleMapWithOverlay({ lat, lng, showFluvial, showCoastal }) {
 
       // === Fluvial Overlays ===
       if (showFluvial) {
-        console.log("show Fluvial")
         const fluvialLayers = [
           "NZ.Flood.FluvialT10",
           "NZ.Flood.FluvialT100",

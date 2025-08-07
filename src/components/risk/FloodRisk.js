@@ -1,38 +1,69 @@
 import React from "react";
 import GoogleMapWithOverlay from "./GoogleMapWithOverlay";
 
-function FloodRisk({ fluvial, coastal, lat, lon}) {
-  console.log(lat, lon)
+function FloodRisk({ fluvial, coastal, lat, lon }) {
+  console.log(lat, lon);
+
+  const isValidFluvial =
+    fluvial &&
+    typeof fluvial === "object" &&
+    !Array.isArray(fluvial) &&
+    !("error" in fluvial) &&
+    Object.keys(fluvial).length > 0;
+
+  const fluvialError = fluvial?.error;
+
+  const isValidCoastal =
+    coastal &&
+    ["100", "500"].some(
+      (key) => typeof coastal[key] === "object" && coastal[key] !== null
+    );
+
   return (
     <div style={{ marginTop: "2rem" }}>
       {/* Fluvial Flood Risk */}
       <h3>Fluvial Flood Risk</h3>
-      <table border="1" cellPadding="6">
-        <thead>
-          <tr>
-            <th>Return Period (years)</th>
-            <th>Flood Probability</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(fluvial).map(([key, value]) => (
-            <tr key={key}>
-              <td>{key}</td>
-              <td>{value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <GoogleMapWithOverlay lat={lat} lng={lon} showCoastal={false} showFluvial={true} />
+      {fluvialError ? (
+        <p style={{ fontStyle: "italic", color: "red" }}>{fluvialError}</p>
+      ) : isValidFluvial ? (
+        <>
+          <table style={{marginBottom:"20px"}} border="1" cellPadding="6">
+            <thead>
+              <tr>
+                <th>Return Period (years)</th>
+                <th>Flood Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(fluvial).map(([key, value]) => (
+                <tr key={key}>
+                  <td>{key}</td>
+                  <td>{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <GoogleMapWithOverlay
+            lat={lat}
+            lng={lon}
+            showCoastal={false}
+            showFluvial={true}
+          />
+        </>
+      ) : (
+        <p style={{ fontStyle: "italic", color: "red" }}>
+          MITECO service is offline or unavailable.
+        </p>
+      )}
 
       {/* Coastal Flood Risk */}
       <h3>Coastal Flood Risk</h3>
-      {["100", "500"].map((key) => {
-        const value = coastal[key];
-        return (
-          <div key={key} style={{ marginBottom: "2rem" }}>
-            <h4>Return Period: {key} years</h4>
-            {value ? (
+      {isValidCoastal ? (
+        ["100", "500"].map((key) => {
+          const value = coastal[key];
+          return (
+            <div key={key} style={{ marginBottom: "2rem" }}>
+              <h4>Return Period: {key} years</h4>
               <table border="1" cellPadding="6">
                 <thead>
                   <tr>
@@ -49,15 +80,24 @@ function FloodRisk({ fluvial, coastal, lat, lon}) {
                   </tr>
                 </tbody>
               </table>
-            ) : (
-              <p style={{ fontStyle: "italic" }}>No flood risk detected at this return period.</p>
-            )}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })
+      ) : (
+        <p style={{ fontStyle: "italic", color: "red" }}>
+          MITECO service is offline or unavailable.
+        </p>
+      )}
 
-      {/* Combined Map View */}
-      <GoogleMapWithOverlay lat={lat} lng={lon} showCoastal={true} showFluvial={false} />
+      {/* Combined Coastal Map View */}
+      {isValidCoastal && (
+        <GoogleMapWithOverlay
+          lat={lat}
+          lng={lon}
+          showCoastal={true}
+          showFluvial={false}
+        />
+      )}
     </div>
   );
 }
