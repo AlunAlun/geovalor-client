@@ -26,8 +26,8 @@ function RiskResults({ data, lat, lon }) {
         />
       )}
 
-      {data.seismic_risk && (
-        <SeismicRisk seismicData={data.seismic_risk}
+      {data.seismic && (
+        <SeismicRisk seismicData={data.seismic}
         lat={lat}
         lon={lon}
         />
