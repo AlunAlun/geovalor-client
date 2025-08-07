@@ -79,7 +79,6 @@ function GoogleMapWithOverlay({ lat, lng, showFluvial, showCoastal }) {
               "https://servicios.idee.es/wms-inspire/riesgos-naturales/inundaciones",
             layerName,
           });
-          console.log("bob" + fluvialOverlay)
           map.overlayMapTypes.insertAt(0 + index, fluvialOverlay);
         });
       }

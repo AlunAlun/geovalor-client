@@ -5,7 +5,7 @@ import AddressAutocomplete from "./components/AddressAutocomplete";
 import RiskForm from "./components/RiskForm";
 import RiskResults from "./components/RiskResults";
 
-const DEBUG_LOCAL_API = false;
+const DEBUG_LOCAL_API = true;
 
 const API_BASE_URL = DEBUG_LOCAL_API
   ? "http://127.0.0.1:8000"
@@ -64,6 +64,7 @@ function App() {
         <button onClick={() => fetchRiskData(lat, lon, "fire")}>Fire</button>
         <button onClick={() => fetchRiskData(lat, lon, "flood")}>Flood</button>
         <button onClick={() => fetchRiskData(lat, lon, "desert")}>Desertification</button>
+        <button onClick={() => fetchRiskData(lat, lon, "seismic")}>Seismic</button>
       </div>
 
       {loading && (

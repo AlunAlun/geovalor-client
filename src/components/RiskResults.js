@@ -3,8 +3,10 @@ import React from "react";
 import FireRisk from "./risk/FireRisk";
 import FloodRisk from "./risk/FloodRisk";
 import DesertificationRisk from "./risk/DesertificationRisk";
+import SeismicRisk from "./risk/SeismicRisk";
 
 function RiskResults({ data, lat, lon }) {
+    console.log(data.seismic_risk)
   return (
     <div style={{ marginTop: "2rem" }}>
       <h2>Risk Assessment Results</h2>
@@ -21,6 +23,13 @@ function RiskResults({ data, lat, lon }) {
           coastal={data.coastal_flood}
           lat={lat}
           lon={lon}
+        />
+      )}
+
+      {data.seismic_risk && (
+        <SeismicRisk seismicData={data.seismic_risk}
+        lat={lat}
+        lon={lon}
         />
       )}
     </div>
