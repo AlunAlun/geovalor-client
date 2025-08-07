@@ -1,6 +1,8 @@
 import React from "react";
+import SeismicRiskMap from "./SeismicRiskMap";
 
 function SeismicRisk({ seismicData, lat, lon }) {
+
   if (!seismicData || !seismicData["HazardArea2002.NCSE-02"]) {
     return <div>No hay datos sísmicos disponibles.</div>;
   }
@@ -46,6 +48,7 @@ function SeismicRisk({ seismicData, lat, lon }) {
   };
 
   return (
+    <>
     <div style={{ marginTop: "2rem" }}>
       <h3>Peligro sísmico (Norma NCSE-02)</h3>
       <table border="1" cellPadding="6">
@@ -88,6 +91,8 @@ function SeismicRisk({ seismicData, lat, lon }) {
         </p>
       </div>
     </div>
+    <SeismicRiskMap seismicData={seismicData} lat={lat} lon={lon} />
+    </>
   );
 }
 

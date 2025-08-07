@@ -6,7 +6,6 @@ import DesertificationRisk from "./risk/DesertificationRisk";
 import SeismicRisk from "./risk/SeismicRisk";
 
 function RiskResults({ data, lat, lon }) {
-    console.log(data.seismic_risk)
   return (
     <div style={{ marginTop: "2rem" }}>
       <h2>Risk Assessment Results</h2>
