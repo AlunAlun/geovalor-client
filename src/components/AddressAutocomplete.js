@@ -9,37 +9,38 @@ export default function AddressAutocomplete({ onSelect }) {
 
   const fetchHereSuggestions = async (query) => {
     if (!query || query.trim().length < 10) {
-        setSuggestions([]);
-        setShowSuggestions(false);
-        return;
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
     }
 
     const params = new URLSearchParams({
-        apiKey: HERE_API_KEY,
-        q: query,
-        at: "40.4168,-3.7038",
-        in: "countryCode:ESP",
-        limit: 5,
-        lang: "es",
+      apiKey: HERE_API_KEY,
+      q: query,
+      at: "40.4168,-3.7038",
+      in: "countryCode:ESP",
+      limit: 5,
+      lang: "es",
     });
 
     try {
-        const res = await fetch(`https://autosuggest.search.hereapi.com/v1/autosuggest?${params.toString()}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const res = await fetch(
+        `https://autosuggest.search.hereapi.com/v1/autosuggest?${params.toString()}`
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-        const data = await res.json();
-        if (!Array.isArray(data.items)) throw new Error("No suggestions returned");
+      const data = await res.json();
+      if (!Array.isArray(data.items)) throw new Error("No suggestions returned");
 
-        const filtered = data.items.filter((item) => item.position);
-        setSuggestions(filtered);
-        setShowSuggestions(true);
+      const filtered = data.items.filter((item) => item.position);
+      setSuggestions(filtered);
+      setShowSuggestions(true);
     } catch (err) {
-        console.error("HERE autosuggest error:", err);
-        setSuggestions([]);
-        setShowSuggestions(false);
+      console.error("HERE autosuggest error:", err);
+      setSuggestions([]);
+      setShowSuggestions(false);
     }
   };
-
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -57,50 +58,27 @@ export default function AddressAutocomplete({ onSelect }) {
   };
 
   return (
-    <div style={{ marginBottom: "1rem", position: "relative" }}>
-      <label>
-        Address (Spain):
-        <input
-          type="text"
-          value={address}
-          onChange={handleChange}
-          placeholder="e.g. Calle Mallorca 401, Barcelona"
-          style={{ marginLeft: "0.5rem", width: "300px" }}
-          onFocus={() => setShowSuggestions(true)}
-        />
+    <div className="mb-4 w-full max-w-md mx-auto relative">
+      <label className="block text-sm font-medium text-brand-dark mb-1">
+        Dirección:
       </label>
 
-      {/* Helper text when query is too short */}
-  {address.length > 0 && address.length < 10 && (
-    <div style={{ display:"inline", marginLeft:"5px", marginTop: "0.5rem", color: "#888", fontSize: "0.9rem" }}>
-      Keep typing to see suggestions...
-    </div>
-  )}
+      <input
+        type="text"
+        value={address}
+        onChange={handleChange}
+        onFocus={() => setShowSuggestions(true)}
+        placeholder="e.g. Calle Mallorca 401, Barcelona"
+        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green"
+      />
 
       {showSuggestions && suggestions.length > 0 && (
-        <ul
-          style={{
-            listStyle: "none",
-            padding: "0",
-            margin: "0.5rem 0 0 0",
-            position: "absolute",
-            background: "#fff",
-            border: "1px solid #ccc",
-            width: "300px",
-            maxHeight: "200px",
-            overflowY: "auto",
-            zIndex: 1000,
-          }}
-        >
+        <ul className="absolute bg-white border border-gray-300 rounded-md shadow-md mt-1 max-h-48 overflow-y-auto w-full z-50">
           {suggestions.map((item) => (
             <li
               key={item.id || item.title}
               onClick={() => handleSuggestionClick(item)}
-              style={{
-                padding: "0.5rem",
-                cursor: "pointer",
-                borderBottom: "1px solid #eee",
-              }}
+              className="px-4 py-2 cursor-pointer hover:bg-gray-100 border-b border-gray-100"
             >
               {item.title}
             </li>

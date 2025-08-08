@@ -1,16 +1,16 @@
+// src/components/risk/SeismicRisk.js
 import React from "react";
 import SeismicRiskMap from "./SeismicRiskMap";
 
 function SeismicRisk({ seismicData, lat, lon }) {
-
   if (!seismicData || !seismicData["HazardArea2002.NCSE-02"]) {
-    return <div>No hay datos sísmicos disponibles.</div>;
+    return <p className="text-gray-500 italic">No hay datos sísmicos disponibles.</p>;
   }
 
   const features = seismicData["HazardArea2002.NCSE-02"].features;
 
   if (!features || features.length === 0) {
-    return <div>No se encontraron zonas sísmicas para esta ubicación.</div>;
+    return <p className="text-gray-500 italic">No se encontraron zonas sísmicas para esta ubicación.</p>;
   }
 
   const feature = features[0];
@@ -48,23 +48,23 @@ function SeismicRisk({ seismicData, lat, lon }) {
   };
 
   return (
-    <>
-    <div className="mb-2 rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
+    <div className="mb-4 w-full max-w-2xl rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
       <h3>Peligro sísmico (Norma NCSE-02)</h3>
-      <table border="1" cellPadding="6">
-        <thead>
+
+      <table className="w-full text-sm text-left border border-collapse border-gray-300 mb-6 mt-2">
+        <thead className="bg-gray-100">
           <tr>
-            <th>Descripción</th>
-            <th>Valor</th>
+            <th className="px-3 py-2 font-medium text-brand-dark">Descripción</th>
+            <th className="px-3 py-2 font-medium text-brand-dark">Valor</th>
           </tr>
         </thead>
         <tbody>
           {Object.entries(properties)
             .filter(([key]) => !["gid", "x", "y"].includes(key))
             .map(([key, value]) => (
-              <tr key={key}>
-                <td>{propertyLabels[key] || key}</td>
-                <td>
+              <tr key={key} className="border-b border-gray-200">
+                <td className="px-3 py-2">{propertyLabels[key] || key}</td>
+                <td className="px-3 py-2">
                   {key === "aceleracion" ? renderAceleracion(value) : value}
                 </td>
               </tr>
@@ -72,28 +72,27 @@ function SeismicRisk({ seismicData, lat, lon }) {
         </tbody>
       </table>
 
-      <div style={{ marginTop: "1rem" }}>
+      <div className="text-sm text-brand-dark space-y-2 mb-6">
         <p><strong>Interpretación de la aceleración sísmica:</strong></p>
-        <ul>
-          <li style={{ color: "green" }}>
+        <ul className="list-disc list-inside space-y-1">
+          <li className="text-green-700">
             <strong>&lt; 0.04g:</strong> Zona de peligro sísmico bajo
           </li>
-          <li style={{ color: "orange" }}>
+          <li className="text-orange-600">
             <strong>0.04g – 0.08g:</strong> Zona de peligro sísmico medio
           </li>
-          <li style={{ color: "red" }}>
+          <li className="text-red-600">
             <strong>&gt;= 0.08g:</strong> Zona de peligro sísmico alto
           </li>
         </ul>
         <p>
-          Estos valores indican la aceleración máxima del terreno (g) esperada
-          en un evento sísmico. Se utilizan para el diseño estructural según la norma NCSE-02.
+          Estos valores indican la aceleración máxima del terreno (g) esperada en un evento sísmico.
+          Se utilizan para el diseño estructural según la norma NCSE-02.
         </p>
       </div>
-    
-    <SeismicRiskMap seismicData={seismicData} lat={lat} lon={lon} />
+
+      <SeismicRiskMap seismicData={seismicData} lat={lat} lon={lon} />
     </div>
-    </>
   );
 }
 

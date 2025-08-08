@@ -18,7 +18,7 @@ function LandingPage() {
         </p>
         {isAuthenticated ? (
             <Link
-                to="/dashboard"
+                to="/buscar"
                 className="bg-brand-green text-white text-lg font-semibold px-6 py-3 rounded-xl hover:bg-brand-dark transition"
             >
                 <span>Panel de Control</span>
