@@ -10,23 +10,23 @@ function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-      <h1 className="text-4xl font-bold mb-4">Login to Geovalor</h1>
+      <h1 className="text-4xl font-bold mb-4">Geovalor</h1>
 
       {!isAuthenticated ? (
         <button
           onClick={() => loginWithRedirect()}
           className="bg-brand-green text-white px-6 py-3 rounded-xl text-lg hover:bg-brand-dark transition"
         >
-          Log In
+          Iniciar Sesión
         </button>
       ) : (
         <div className="space-y-4">
           <p className="text-xl font-semibold">Welcome, {user.name}</p>
           <button
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/buscar")}
             className="bg-brand-green text-white px-6 py-3 rounded-xl text-lg hover:bg-brand-dark transition"
           >
-            Go to Dashboard
+            Panel de Control
           </button>
           <button
             onClick={() =>
@@ -34,7 +34,7 @@ function LoginPage() {
             }
             className="bg-red-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-red-800 transition"
           >
-            Log Out
+            Cerrar Sesión
           </button>
         </div>
       )}

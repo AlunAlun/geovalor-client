@@ -4,9 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import Dashboard from "./pages/Dashboard";
 import SearchPage from "./pages/SearchPage";
-import Navbar from "./components/risk/navbar";
+import Navbar from "./components/navbar";
 import ReportPage from "./pages/ReportPage";
 
 
@@ -18,14 +17,6 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/buscar"
             element={

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import logo from "../../img/geovalor_logo_256.png";
+import logo from "../img/geovalor_logo_256.png";
 import { Menu, X } from "lucide-react"; // ✅ install lucide-react if not already
 
 function Navbar() {
@@ -31,7 +31,7 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link to="/dashboard" className="hover:text-brand-green">
+          <Link to="/buscar" className="hover:text-brand-green">
             Panel de Control
           </Link>
           {isAuthenticated ? (
