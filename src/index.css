@@ -4,7 +4,7 @@
 
 /* Optional: apply your brand styles globally */
 body {
-  @apply bg-brand-beige text-brand-dark font-sans;
+  @apply bg-brand-white text-brand-dark font-sans;
 }
 
 @layer components {

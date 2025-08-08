@@ -10,6 +10,7 @@ module.exports = {
           lightgreen: "#b5e0b7",
           beige: "#f4efe7",
           dark: "#0A3B3F",
+          white: "#ffffff",
         },
       },
       fontFamily: {
