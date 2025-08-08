@@ -18,7 +18,7 @@ function Navbar() {
       </Link>
       <div className="space-x-4">
         <Link to="/dashboard" className="hover:text-brand-green">
-          Dashboard
+          Panel de Control
         </Link>
 
         {isAuthenticated ? (
@@ -26,14 +26,14 @@ function Navbar() {
             onClick={() => logout({ returnTo: window.location.origin })}
             className="bg-brand-green text-white px-4 py-2 rounded hover:bg-brand-dark"
           >
-            Logout
+            Cerrar Sesión
           </button>
         ) : (
           <button
             onClick={() => loginWithRedirect()}
             className="bg-brand-green text-white px-4 py-2 rounded hover:bg-brand-dark"
           >
-            Login
+            Iniciar Sesión
           </button>
         )}
       </div>
