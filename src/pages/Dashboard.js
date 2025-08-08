@@ -6,11 +6,7 @@ import AddressAutocomplete from "../components/AddressAutocomplete";
 import RiskForm from "../components/RiskForm";
 import RiskResults from "../components/RiskResults";
 
-const DEBUG_LOCAL_API = false;
-
-const API_BASE_URL = DEBUG_LOCAL_API
-  ? "http://127.0.0.1:8000"
-  : process.env.REACT_APP_GEOVALOR_API_URL;
+const API_BASE_URL = process.env.REACT_APP_GEOVALOR_API_URL;
 
 function App() {
   const [lat, setLat] = useState("41.27270457818908");
