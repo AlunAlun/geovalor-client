@@ -9,12 +9,9 @@ import SeismicRisk from "../components/risk/SeismicRisk";
 import DesertificationRisk from "../components/risk/DesertificationRisk";
 
 const API_BASE_URL = process.env.REACT_APP_GEOVALOR_API_URL;
-const riskTypes = ["flood", "seismic", "desert", "fire"];
+const riskTypes = ["flood", "fire", "seismic", "desert"];
 
-const mapContainerStyle = {
-  width: "100%",
-  height: "200px",
-};
+const mapContainerStyle = { width: "100%", height: "200px" };
 
 function ReportPage() {
   const location = useLocation();
@@ -23,7 +20,7 @@ function ReportPage() {
 
   const lat = location.state?.lat;
   const lon = location.state?.lon;
-  const address = location.state?.address; // optional, passed from AddressAutocomplete
+  const address = location.state?.address;
 
   const [results, setResults] = useState({});
   const [errors, setErrors] = useState({});
@@ -44,13 +41,12 @@ function ReportPage() {
         setLoading((prev) => ({ ...prev, [type]: true }));
         const token = await getAccessTokenSilently();
         const res = await fetch(`${API_BASE_URL}/risk/${type}?lat=${lat}&lon=${lon}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(`Failed to fetch ${type}`);
         const json = await res.json();
         setResults((prev) => ({ ...prev, [type]: json }));
+
       } catch (err) {
         console.error(err);
         setErrors((prev) => ({ ...prev, [type]: err.message }));
@@ -63,13 +59,11 @@ function ReportPage() {
   }, [lat, lon, getAccessTokenSilently]);
 
   return (
-    <div className="flex flex-col items-center px-4 mt-10">
-      <h1 className="text-center">
-        Informe de Riesgos Ambientales
-      </h1>
+    <div className="mx-auto w-full max-w-4xl px-4 md:px-6 lg:px-8 mt-10">
+      <h1 className="text-center mb-6">Informe de Riesgos Ambientales</h1>
 
-      {/* === Summary Box === */}
-      <div className="mb-6 w-full max-w-2xl rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
+      {/* === Summary Box (full width) === */}
+      <div className="mb-8 w-full rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
         <h2 className="text-lg font-semibold text-brand-dark mb-2">Resumen de la Consulta</h2>
         {address && (
           <p className="text-sm text-brand-dark">
@@ -82,60 +76,53 @@ function ReportPage() {
 
         {mapsLoaded && (
           <div className="mt-4 rounded overflow-hidden">
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={{ lat, lng: lon }}
-              zoom={15}
-            >
+            <GoogleMap mapContainerStyle={mapContainerStyle} center={{ lat, lng: lon }} zoom={15}>
               <Marker position={{ lat, lng: lon }} />
             </GoogleMap>
           </div>
         )}
       </div>
 
-      {/* === Risk Boxes === */}
-      {riskTypes.map((type) => (
-        <div
-          key={type}
-          className="mb-4 w-full max-w-2xl rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm"
-        >
-          {loading[type] && (
-            <p className="text-gray-500 italic">Cargando datos de {type}...</p>
-          )}
+      {/* === Risk Boxes Grid === */}
+      <div className="grid grid-cols-1 gap-6">
+        {riskTypes.map((type) => (
+          <div
+            key={type}
+            className="rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm h-full"
+          >
+            {loading[type] && (
+              <p className="text-gray-500 italic">Cargando datos de {type}...</p>
+            )}
 
-          {errors[type] && (
-            <p className="text-red-600">❌ Error: {errors[type]}</p>
-          )}
+            {errors[type] && <p className="text-red-600">❌ Error: {errors[type]}</p>}
 
-          {results[type] && type==="fire" && (
-            <FireRisk fireData={results["fire"].fire} />
-          )}
+            {results[type] && type === "fire" && (
+              <FireRisk fireData={results["fire"].fire} />
+            )}
 
-          {results[type] && type==="flood" && (
-            <FloodRisk fluvial={results["flood"].fluvial_flood}
+            {results[type] && type === "flood" && (
+              <FloodRisk
+                fluvial={results["flood"].fluvial_flood}
                 coastal={results["flood"].coastal_flood}
                 lat={lat}
-                lon={lon} />
-          )}
-
-          {results[type] && type==="seismic" && (
-            <SeismicRisk seismicData={results["seismic"].seismic}
-                lat={lat}
                 lon={lon}
-            />
-          )}
+              />
+            )}
 
-          {results[type] && type==="desert" && (
-            <DesertificationRisk desertData={results["desert"].desertification} />
-          )}
+            {results[type] && type === "seismic" && (
+              <SeismicRisk seismicData={results["seismic"].seismic} lat={lat} lon={lon} />
+            )}
 
-          
-
-          
-        </div>
-      ))}
+            {results[type] && type === "desert" && (
+              <DesertificationRisk desertData={results["desert"].desertification} />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default ReportPage;
+
+

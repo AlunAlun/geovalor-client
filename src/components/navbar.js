@@ -17,7 +17,7 @@ function Navbar() {
         {/* Logo + Brand */}
         <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
           <img src={logo} alt="Geovalor Logo" className="h-8 w-8" />
-          <span className="text-xl font-bold text-brand-dark">Geovalor</span>
+          <span className="text-xl font-bold text-brand-dark">GeoTasa</span>
         </Link>
 
         {/* Hamburger Icon (only on mobile) */}

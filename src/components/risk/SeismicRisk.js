@@ -1,6 +1,7 @@
 // src/components/risk/SeismicRisk.js
 import React from "react";
 import SeismicRiskMap from "./SeismicRiskMap";
+import RiskSlider from "./RiskSlider";
 
 function SeismicRisk({ seismicData, lat, lon }) {
   if (!seismicData || !seismicData["HazardArea2002.NCSE-02"]) {
@@ -48,8 +49,17 @@ function SeismicRisk({ seismicData, lat, lon }) {
   };
 
   return (
-    <div className="mb-4 w-full max-w-2xl rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
-      <h3>Peligro sísmico (Norma NCSE-02)</h3>
+    <>
+    <h2>Peligro sísmico (Norma NCSE-02)</h2>
+    <div className="w-full px-4 py-8">
+      <RiskSlider
+        min={0}
+        max={100}
+        value={seismicData["overall"]}
+        className="block w-full"
+        borderClassName="border border-brand-green/40"
+      />
+    </div>
 
       <table className="w-full text-sm text-left border border-collapse border-gray-300 mb-6 mt-2">
         <thead className="bg-gray-100">
@@ -92,7 +102,8 @@ function SeismicRisk({ seismicData, lat, lon }) {
       </div>
 
       <SeismicRiskMap seismicData={seismicData} lat={lat} lon={lon} />
-    </div>
+
+    </>
   );
 }
 
