@@ -11,6 +11,8 @@ function Navbar() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
+// onClick={() => logout({ returnTo: window.location.origin })}
+
   return (
     <nav className="bg-white shadow-md px-6 py-3">
       <div className="flex justify-between items-center">
@@ -36,7 +38,11 @@ function Navbar() {
           </Link>
           {isAuthenticated ? (
             <button
-              onClick={() => logout({ returnTo: window.location.origin })}
+              
+              onClick={() => {
+                logout({ logoutParams: { returnTo: window.location.origin } });
+                closeMenu();
+              }}
               className="bg-brand-green text-white px-4 py-2 rounded hover:bg-brand-dark"
             >
               Cerrar Sesión

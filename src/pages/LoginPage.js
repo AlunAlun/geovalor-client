@@ -14,7 +14,11 @@ function LoginPage() {
 
       {!isAuthenticated ? (
         <button
-          onClick={() => loginWithRedirect()}
+          onClick={() => loginWithRedirect({
+            authorizationParams: {
+              redirect_uri: `${window.location.origin}/buscar`,
+            },
+          })}
           className="bg-brand-green text-white px-6 py-3 rounded-xl text-lg hover:bg-brand-dark transition"
         >
           Iniciar Sesión
