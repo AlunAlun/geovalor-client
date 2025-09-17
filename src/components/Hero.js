@@ -11,7 +11,7 @@ export default function Hero({
   tagline = "",
   subtag = "GeoTasa integra automáticamente en tus informes ECO la información oficial sobre riesgos de inundación fluvial, inundación costera, incendios forestales, desertificación, riesgo sísmico y riesgo volcánico.",
   ctaPrimary = { label: "Más información", onClick: null, href: "/producto" },
-  ctaSecondary = { label: "Solicitar demo grátis", onClick: null, href: "/contactar" },
+  ctaSecondary = { label: "Solicitar demo grátis", onClick: null, href: "/contacto" },
   ctaSecondaryAuth = { label: "Panel de Control", onClick: null, href: "/buscar" },
   className = "",
 }) {

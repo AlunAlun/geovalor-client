@@ -10,6 +10,9 @@ import ReportPage from "./pages/ReportPage";
 import Footer from "./components/Footer";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
+import SampleReportPage from "./pages/SampleReportPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import LegalNoticePage from "./pages/LegalNoticePage";
 
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/producto" element={<ProductPage />} />
           <Route path="/contacto" element={<ContactPage />} />
+          <Route path="/descargar-ejemplo" element={<SampleReportPage />} />
+          <Route path="/privacidad" element={<PrivacyPolicyPage />} />
+          <Route path="/aviso-legal" element={<LegalNoticePage />} />
           <Route
             path="/buscar"
             element={

@@ -20,12 +20,12 @@ export default function ProductPage() {
 
   const gallery = [screen4, screen5, screen6, screen2, screen3, screen1];
 
-  const playVideo = () => {
-    if (!videoRef.current) return;
-    videoRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-    // try to play; some browsers require user gesture—this is from a click
-    videoRef.current.play?.();
-  };
+//   const playVideo = () => {
+//     if (!videoRef.current) return;
+//     videoRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+//     // try to play; some browsers require user gesture—this is from a click
+//     videoRef.current.play?.();
+//   };
 
   return (
     <>
@@ -52,17 +52,23 @@ export default function ProductPage() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
-                to="/contactar"
+                to="/descargar-ejemplo"
                 className="rounded-xl bg-brand-green px-6 py-3 text-white font-semibold shadow-lg shadow-[#65B37A]/20 hover:bg-brand-dark"
                 >
-                Probar ahora
+                Decargar ejemplo
                 </Link>
-                <button
+                <Link
+                to="/contacto"
+                className="rounded-xl px-6 py-3 font-semibold ring-1 ring-brand-green text-brand-green bg-transparent hover:bg-brand-green hover:text-white"
+                >
+                Habla con el equipo
+                </Link>
+                {/* <button
                 onClick={playVideo}
                 className="rounded-xl px-6 py-3 font-semibold ring-1 ring-brand-green text-brand-green bg-transparent hover:bg-brand-green hover:text-white"
                 >
                 Ver video (90s)
-                </button>
+                </button> */}
             </div>
             </div>
 

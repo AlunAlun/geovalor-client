@@ -1,59 +1,59 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../img/geovalor_logo_256.png";
 
 const Footer = ({ subscribeEndpoint = "/api/newsletter/subscribe" }) => {
   const year = new Date().getFullYear();
-  const [status, setStatus] = useState({ state: "idle", message: "" });
+//   const [status, setStatus] = useState({ state: "idle", message: "" });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const email = form.email.value.trim();
-    const trap = form.company.value; // honeypot
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const form = e.currentTarget;
+//     const email = form.email.value.trim();
+//     const trap = form.company.value; // honeypot
 
-    if (trap) return; // likely a bot, silently ignore
+//     if (trap) return; // likely a bot, silently ignore
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus({ state: "error", message: "Introduce un email válido." });
-      return;
-    }
+//     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+//       setStatus({ state: "error", message: "Introduce un email válido." });
+//       return;
+//     }
 
-    setStatus({ state: "loading", message: "" });
-    try {
-      const res = await fetch(subscribeEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+//     setStatus({ state: "loading", message: "" });
+//     try {
+//       const res = await fetch(subscribeEndpoint, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email }),
+//       });
 
-      if (res.ok) {
-        setStatus({
-          state: "success",
-          message:
-            "¡Gracias! Revisa tu correo para confirmar la suscripción.",
-        });
-        form.reset();
-      } else {
-        const txt = await res.text();
-        setStatus({
-          state: "error",
-          message: txt || "No se pudo completar la suscripción.",
-        });
-      }
-    } catch {
-      setStatus({
-        state: "error",
-        message: "Error de red. Inténtalo de nuevo.",
-      });
-    }
-  };
+//       if (res.ok) {
+//         setStatus({
+//           state: "success",
+//           message:
+//             "¡Gracias! Revisa tu correo para confirmar la suscripción.",
+//         });
+//         form.reset();
+//       } else {
+//         const txt = await res.text();
+//         setStatus({
+//           state: "error",
+//           message: txt || "No se pudo completar la suscripción.",
+//         });
+//       }
+//     } catch {
+//       setStatus({
+//         state: "error",
+//         message: "Error de red. Inténtalo de nuevo.",
+//       });
+//     }
+//   };
 
   return (
     <footer className="border-t border-gray-100 bg-gradient-to-tr from-[#65B37A]/10 to-emerald-50">
       <div className="mx-auto max-w-7xl px-6 py-12">
 
         {/* Newsletter */}
-        <section className="mb-12 rounded-2xl bg-white/70 p-6 shadow-sm ring-1 ring-gray-200 backdrop-blur-sm">
+        {/* <section className="mb-12 rounded-2xl bg-white/70 p-6 shadow-sm ring-1 ring-gray-200 backdrop-blur-sm">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div>
               <h3 className="text-lg font-semibold text-gray-900">
@@ -69,7 +69,7 @@ const Footer = ({ subscribeEndpoint = "/api/newsletter/subscribe" }) => {
               className="w-full max-w-xl md:w-auto md:min-w-[520px]"
               noValidate
             >
-              {/* Honeypot */}
+
               <input
                 type="text"
                 name="company"
@@ -143,7 +143,7 @@ const Footer = ({ subscribeEndpoint = "/api/newsletter/subscribe" }) => {
               )}
             </form>
           </div>
-        </section>
+        </section> */}
 
         {/* Main footer content */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
@@ -178,16 +178,16 @@ const Footer = ({ subscribeEndpoint = "/api/newsletter/subscribe" }) => {
                   info@geotasa.es
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="tel:+34XXXXXXXXX" className="text-gray-600 hover:text-gray-900">
                   +34 XXX XXX XXX
                 </a>
-              </li>
+              </li> */}
             </ul>
 
             <div className="mt-5 flex items-center gap-4">
               <a
-                href="#"
+                href="https://www.linkedin.com/company/geotasa/"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noreferrer"
@@ -200,7 +200,7 @@ const Footer = ({ subscribeEndpoint = "/api/newsletter/subscribe" }) => {
                   />
                 </svg>
               </a>
-              <a
+              {/* <a
                 href="#"
                 aria-label="Instagram"
                 target="_blank"
@@ -213,7 +213,7 @@ const Footer = ({ subscribeEndpoint = "/api/newsletter/subscribe" }) => {
                     d="M12 2.2c3.2 0 3.6.01 4.9.07 1.2.06 1.9.25 2.3.42.6.23 1 .5 1.4.94.43.43.7.87.94 1.44.17.4.36 1.02.42 2.24.06 1.3.07 1.7.07 4.9s-.01 3.6-.07 4.9c-.06 1.2-.25 1.9-.42 2.3a3.6 3.6 0 0 1-.94 1.4c-.44.43-.87.7-1.44.94-.4.17-1.02.36-2.24.42-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-1.2-.06-1.9-.25-2.3-.42a3.6 3.6 0 0 1-1.4-.94 3.6 3.6 0 0 1-.94-1.44c-.17-.4-.36-1.02-.42-2.24C2.21 15.6 2.2 15.2 2.2 12s.01-3.6.07-4.9c.06-1.2.25-1.9.42-2.3.23-.6.5-1 .94-1.44.43-.43.87-.7 1.44-.94.4-.17 1.02-.36 2.24-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 2.7a6.4 6.4 0 1 1 0 12.8 6.4 6.4 0 0 1 0-12.8Zm0 2a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8Zm5.2-2.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"
                   />
                 </svg>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
