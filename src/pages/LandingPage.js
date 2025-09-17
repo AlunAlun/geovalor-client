@@ -1,6 +1,7 @@
 import React from "react";
 import BenefitBox from "../components/BenefitBox";
 import Hero from "../components/Hero";
+import PreFooter from "../components/PreFooter";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import screen1 from "../img/screen1.jpg"
@@ -114,7 +115,7 @@ function LandingPage() {
 
       </div>
     </div>
-    <section className="relative isolate bg-gradient-to-r from-[#65B37A]/10 to-emerald-50 py-16 sm:py-20 lg:py-24 border-t border-gray-100">
+    <section className="relative isolate bg-gradient-to-r from-[#65B37A]/10 to-emerald-50 py-16 sm:py-20 lg:py-24 border-t border-gray-100 shadow-md ">
   <div className="mx-auto max-w-4xl px-6 text-center">
     <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
       Actualiza tus tasaciones hoy, sin complicaciones
@@ -126,15 +127,15 @@ function LandingPage() {
 
     <div className="mt-8 flex justify-center">
       <a
-        href="mailto:rupert@geotasa.es"
-        className="inline-flex items-center justify-center rounded-xl bg-[#65B37A] px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-[#65B37A]/20 hover:bg-[#549968] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#65B37A] transition"
+        href="/producto"
+        className="inline-flex items-center justify-center rounded-xl bg-[#65B37A] px-5 py-3 text-md font-semibold text-white shadow-lg shadow-[#65B37A]/20 hover:bg-[#549968] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#65B37A] transition"
       >
-        Solicita tu demo gratuita
+        Más información
       </a>
     </div>
   </div>
 </section>
-
+<PreFooter />
     </>
   );
 }

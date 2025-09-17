@@ -7,6 +7,9 @@ import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
 import Navbar from "./components/navbar";
 import ReportPage from "./pages/ReportPage";
+import Footer from "./components/Footer";
+import ProductPage from "./pages/ProductPage";
+import ContactPage from "./pages/ContactPage";
 
 
 function App() {
@@ -17,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/producto" element={<ProductPage />} />
+          <Route path="/contacto" element={<ContactPage />} />
           <Route
             path="/buscar"
             element={
@@ -35,6 +40,7 @@ function App() {
           />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }

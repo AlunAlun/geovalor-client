@@ -10,8 +10,8 @@ export default function Hero({
   line2 = "y cumplimiento inmediato",
   tagline = "",
   subtag = "GeoTasa integra automáticamente en tus informes ECO la información oficial sobre riesgos de inundación fluvial, inundación costera, incendios forestales, desertificación, riesgo sísmico y riesgo volcánico.",
-  ctaPrimary = { label: "Solicita demo gratuito", onClick: null, href: "mailto:rupert@geotasa.es" },
-  ctaSecondary = { label: "Empieza ahora", onClick: null, href: "/login" },
+  ctaPrimary = { label: "Más información", onClick: null, href: "/producto" },
+  ctaSecondary = { label: "Solicitar demo grátis", onClick: null, href: "/contactar" },
   ctaSecondaryAuth = { label: "Panel de Control", onClick: null, href: "/buscar" },
   className = "",
 }) {
@@ -48,11 +48,11 @@ export default function Hero({
         {/* CTAs */}
         <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <CTAButton variant="soft" {...ctaPrimary} />
-          {isAuthenticated ? (
+          {/* {isAuthenticated ? (
             <CTAButton variant="solid" {...ctaSecondaryAuth} />
-          ) : (
+          ) : ( */}
             <CTAButton variant="solid" {...ctaSecondary} />
-          )}
+          {/* )} */}
           
         </div>
       </div>
@@ -78,9 +78,9 @@ function CTAButton({ label, href, onClick, variant = "solid" }) {
     "inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400";
   const styles =
     variant === "solid"
-      ? "bg-[#65B37A] text-white shadow-lg hover:bg-[#549968] active:translate-y-[1px]"
+      ? "bg-[#65B37A] text-white shadow-lg hover:bg-brand-dark active:translate-y-[1px]"
 
-      : "bg-white text-gray-900 ring-1 ring-gray-200 hover:ring-gray-300 shadow-sm";
+      : "bg-white text-brand-dark ring-1 ring-gray-200 hover:ring-brand-dark shadow-sm";
 
   const Comp = href ? "a" : "button";
   const props = href ? { href } : { type: "button", onClick };
