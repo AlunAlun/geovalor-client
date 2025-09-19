@@ -1,6 +1,7 @@
 // src/components/risk/FireRisk.js
 import React from "react";
 import RiskSlider from "./RiskSlider";
+import FireRiskMap from "./FireRiskMap";
 
 function toSpanishDecimal(value, decimals = 2) {
   return value.toLocaleString("es-ES", {
@@ -9,7 +10,7 @@ function toSpanishDecimal(value, decimals = 2) {
   });
 }
 
-function FireRisk({ fireData }) {
+function FireRisk({ fireData, forestData, lat, lon }) {
   if (!fireData) {
     return <p className="text-gray-500 italic">No hay datos de incendio disponibles.</p>;
   }
@@ -34,6 +35,9 @@ function FireRisk({ fireData }) {
       <div className="mt-2 mb-2 text-sm text-brand-dark/80 leading-snug">
       El inmueble se encuentra en un término municipal que ha registrado un promedio de <span className="font-bold"> {overallString}</span> incendios (o conatos) en los datos históricos. El valor máximo registrado en el país durante este período es de 1.511.
       </div>
+
+    <FireRiskMap data={forestData} lat={lat} lon={lon} />
+
     </div>
       {["96_05", "06_15"].map((period) => {
         const periodString = period === "96_05" ? "1996 - 2005" : "2006 - 2015"

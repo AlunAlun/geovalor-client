@@ -97,7 +97,7 @@ function ReportPage() {
             {errors[type] && <p className="text-red-600">❌ Error: {errors[type]}</p>}
 
             {results[type] && type === "fire" && (
-              <FireRisk fireData={results["fire"].fire} />
+              <FireRisk fireData={results["fire"].fire} forestData={results["fire"].forest} lat={lat} lon={lon} />
             )}
 
             {results[type] && type === "flood" && (
