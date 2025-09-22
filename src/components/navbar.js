@@ -40,9 +40,11 @@ function Navbar() {
             Contacto
           </Link>
           {/* <Link to="/buscar" className="text-brand-green font-bold hover:underline"> */}
+          {isAuthenticated && (
           <Link to="/buscar" className="rounded-xl px-4 py-2 font-semibold ring-1 ring-brand-green text-brand-green hover:bg-brand-green hover:text-white">
             Panel de Control
           </Link>
+          )}
           {isAuthenticated ? (
             <button
               
@@ -74,9 +76,10 @@ function Navbar() {
           <Link to="/contacto" className="font-semibold text-brand-green hover:text-brand-dark">
             Contacto
           </Link>
+          {isAuthenticated && (
           <Link to="/dashboard" onClick={closeMenu} className="w-full rounded-xl px-4 py-2 font-semibold ring-1 ring-brand-green text-brand-green hover:bg-brand-green hover:text-white">
             Panel de Control
-          </Link>
+          </Link>) }
           {isAuthenticated ? (
             <button
               onClick={() => {
