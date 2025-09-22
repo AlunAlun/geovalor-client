@@ -95,7 +95,7 @@ function RiskSlider({
             className="text-xs font-semibold rounded-lg px-2 py-1 shadow-md"
             style={{
               backgroundColor: markerColor,
-              color: "white",
+              color: "black",
               minWidth: 28,
               textAlign: "center",
               lineHeight: 1.1,
@@ -110,8 +110,8 @@ function RiskSlider({
       {showExplanation && (
         <div className="mt-3">
           <p className="text-sm font-semibold text-brand-dark">
-            Valor de Riesgo:{" "}
-            <span style={{ color: markerColor }}>{riskLabel}</span>
+            Valor de Riesgo:{" "}{riskLabel}
+            {/* <span style={{ color: markerColor }}></span> */}
           </p>
           <p className="mt-1 text-xs text-brand-dark/80 leading-snug">
             El indicador muestra el nivel de riesgo en una escala de {min}{" "}

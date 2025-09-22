@@ -20,21 +20,23 @@ function FireRiskMap({ data, lat, lon, zoom = 11 }) {
   // pick the forest payload regardless of nesting
   const forest = data?.forest ?? data ?? {};
   const fc = forest?.geojson; // FeatureCollection expected here
-  const hits = forest?.hits ?? [];
+  // const hits = forest?.hits ?? [];
+  const risk_overall = forest?.risk_overall ?? 0;
+  console.log("Overall: " + risk_overall);
 
   // === color helpers ===
-  function colorForRisk(risk) {
-    if (risk == null) return "#2e7d32";
-    if (risk < 0.33) return "#2e7d32";
-    if (risk < 0.66) return "#f57c00";
-    return "#c62828";
-  }
-  function colorForDistance(meters) {
-    if (meters == null) return "#2e7d32";
-    if (meters < 200) return "#c62828";
-    if (meters < 600) return "#f57c00";
-    return "#2e7d32";
-  }
+  // function colorForRisk(risk) {
+  //   if (risk == null) return "#2e7d32";
+  //   if (risk < 0.33) return "#2e7d32";
+  //   if (risk < 0.66) return "#f57c00";
+  //   return "#c62828";
+  // }
+  // function colorForDistance(meters) {
+  //   if (meters == null) return "#2e7d32";
+  //   if (meters < 200) return "#c62828";
+  //   if (meters < 600) return "#f57c00";
+  //   return "#2e7d32";
+  // }
 
   useEffect(() => {
     const init = () => {
@@ -51,7 +53,7 @@ function FireRiskMap({ data, lat, lon, zoom = 11 }) {
         mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
           center,
           zoom,
-          mapTypeId: "roadmap",
+          mapTypeId: "hybrid",
         });
       } else {
         mapInstanceRef.current.setCenter(center);
@@ -70,24 +72,25 @@ function FireRiskMap({ data, lat, lon, zoom = 11 }) {
       dataLayerRef.current = layer;
 
       // Build a quick lookup (forest_type + zone) -> hit
-      const keyFor = (obj) => `${obj?.forest_type ?? ""}::${obj?.zone ?? ""}`;
-      const hitByKey = new Map(hits.map((h) => [keyFor(h), h]));
+      // const keyFor = (obj) => `${obj?.forest_type ?? ""}::${obj?.zone ?? ""}`;
+      // const hitByKey = new Map(hits.map((h) => [keyFor(h), h]));
 
+      const ORANGE = "#ff9800";
       // Style by risk (if available), else distance
       layer.setStyle((feature) => {
         const forestType = feature.getProperty("forest_type");
         const zone = feature.getProperty("zone");
-        const dist = feature.getProperty("distance_m");
+        // const dist = feature.getProperty("distance_m");
         const kind = feature.getProperty("kind"); // "patch" | "component"
 
-        const hit = hitByKey.get(`${forestType ?? ""}::${zone ?? ""}`);
-        const risk = hit?.risk ?? null;
-        const color = risk != null ? colorForRisk(risk) : colorForDistance(dist);
+        // const hit = hitByKey.get(`${forestType ?? ""}::${zone ?? ""}`);
+        // const risk = hit?.risk ?? null;
+        // const color = risk != null ? colorForRisk(risk) : colorForDistance(dist);
 
         return {
-          fillColor: color,
+          fillColor: ORANGE,
           fillOpacity: kind === "patch" ? 0.30 : 0.15,
-          strokeColor: color,
+          strokeColor: ORANGE,
           strokeOpacity: 0.9,
           strokeWeight: kind === "patch" ? 2 : 1,
           zIndex: kind === "patch" ? 2 : 1,
@@ -162,7 +165,7 @@ function FireRiskMap({ data, lat, lon, zoom = 11 }) {
       {isError ? (
         <div>Failed to load the map. Please try again later.</div>
       ) : (
-        <div ref={mapRef} style={{ height: "500px", width: "100%", marginTop: "2rem" }} />
+        <div ref={mapRef} style={{ height: "500px", width: "100%"}} />
       )}
     </div>
   );
