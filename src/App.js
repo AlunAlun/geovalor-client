@@ -13,10 +13,12 @@ import ContactPage from "./pages/ContactPage";
 import SampleReportPage from "./pages/SampleReportPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import LegalNoticePage from "./pages/LegalNoticePage";
-
+import SessionCleanup from "./components/SessionCleanup";
 
 function App() {
   return (
+    <>
+    <SessionCleanup />
     <Router>
       <div className="print:hidden">
         <Navbar />
@@ -52,6 +54,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </>
   );
 }
 

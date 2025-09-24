@@ -107,7 +107,11 @@ function Navbar() {
           ) : (
             <button
               onClick={() => {
-                loginWithRedirect();
+                loginWithRedirect({
+                  authorizationParams: {
+                    prompt: "login", // always show the box
+                  },
+                });
                 closeMenu();
               }}
               className="w-full bg-brand-green text-white px-4 py-2 ring-1 ring-brand-green rounded-xl hover:bg-brand-dark"

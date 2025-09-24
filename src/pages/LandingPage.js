@@ -3,6 +3,7 @@ import BenefitBox from "../components/BenefitBox";
 import Hero from "../components/Hero";
 import PreFooter from "../components/PreFooter";
 import { useAuth0 } from "@auth0/auth0-react";
+import NotApprovedGate from "../components/NotApprovedGate";
 
 import screen1 from "../img/screen1.jpg"
 import screen2 from "../img/screen2.jpg"
@@ -16,7 +17,7 @@ function LandingPage() {
 
   return (
     <>
-
+      <NotApprovedGate />
 
       <Hero isAuthenticated={isAuthenticated}/>
       
