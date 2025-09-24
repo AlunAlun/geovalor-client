@@ -18,7 +18,9 @@ import LegalNoticePage from "./pages/LegalNoticePage";
 function App() {
   return (
     <Router>
-      <Navbar />
+      <div className="print:hidden">
+        <Navbar />
+      </div>
       <div className="p-1">
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -46,7 +48,9 @@ function App() {
           />
         </Routes>
       </div>
-      <Footer />
+      <div className="print:hidden">
+        <Footer />
+      </div>
     </Router>
   );
 }

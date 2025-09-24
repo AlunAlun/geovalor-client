@@ -86,12 +86,10 @@ export default function ProductPage() {
                   controls
                 >
                   {/* Replace with your real video when ready */}
-                  <source src="/videos/geotasa-demo.mp4" type="video/mp4" />
+                  <source src="/videos/geotasa-demo-720p.mp4" type="video/mp4" />
                 </video>
               </div>
-              <p className="p-3 text-center text-xs text-gray-500">
-                * Sustituye este vídeo por tu grabación cuando la tengas.
-              </p>
+
             </div>
           </div>
         </div>

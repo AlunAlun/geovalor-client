@@ -94,15 +94,15 @@ export default function ContactPage({ submitEndpoint = process.env.REACT_APP_GEO
                       rupert@geotasa.es
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a className="hover:text-gray-900" href="tel:+34XXXXXXXXX">
                       +34 XXX XXX XXX
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
                 <div className="mt-4 flex gap-3">
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/company/geotasa/"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white shadow ring-1 ring-gray-200 hover:ring-[#65B37A]"
@@ -115,24 +115,7 @@ export default function ContactPage({ submitEndpoint = process.env.REACT_APP_GEO
                       />
                     </svg>
                   </a>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white shadow ring-1 ring-gray-200 hover:ring-[#65B37A]"
-                    aria-label="Instagram"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-5 w-5 text-gray-700" aria-hidden="true">
-                      <path
-                        fill="currentColor"
-                        d="M12 2.2c3.2 0 3.6.01 4.9.07 1.2.06 1.9.25 2.3.42.6.23 1 .5 1.4.94.43.43.7.87.94 1.44.17.4.36 1.02.42 2.24.06 1.3.07 1.7.07 4.9s-.01 3.6-.07 4.9c-.06 1.2-.25 1.9-.42 2.3a3.6 3.6 0 0 1-.94 1.4c-.44.43-.87.7-1.44.94-.4.17-1.02.36-2.24.42-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-1.2-.06-1.9-.25-2.3-.42a3.6 3.6 0 0 1-1.4-.94 3.6 3.6 0 0 1-.94-1.44c-.17-.4-.36-1.02-.42-2.24C2.21 15.6 2.2 15.2 2.2 12s.01-3.6.07-4.9c.06-1.2.25-1.9.42-2.3.23-.6.5-1 .94-1.44.43-.43.87-.7 1.44-.94.4-.17 1.02-.36 2.24-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 2.7a6.4 6.4 0 1 1 0 12.8 6.4 6.4 0 0 1 0-12.8Zm0 2a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8Zm5.2-2.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"
-                      />
-                    </svg>
-                  </a>
                 </div>
-                <p className="mt-4 text-xs text-gray-500">
-                  Horario: 9:00–18:00 CET (L–V)
-                </p>
               </div>
             </aside>
 

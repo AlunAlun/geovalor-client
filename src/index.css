@@ -64,3 +64,57 @@ body {
     @apply text-base font-medium text-brand-dark mb-1 uppercase tracking-wide;
   }
 }
+
+/* === PRINT RULES === */
+
+@page {
+  size: A4 portrait;
+  margin: 12mm; /* tune for your design */
+}
+
+/* Basics for print clarity */
+@media print {
+  html, body {
+    background: #fff !important;
+  }
+  /* Ensure the printable surface doesn't get clipped */
+  .a4-surface {
+    width: 100%;
+  }
+  /* Don't split cards/maps/tables awkwardly */
+  .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  /* Make grids linear in print to minimize splits */
+  .print\:block {
+    display: block !important;
+  }
+  /* Remove shadows/borders if you prefer ultra-clean look */
+  .shadow, .shadow-sm, .shadow-md, .shadow-lg {
+    box-shadow: none !important;
+  }
+
+  /* Keep images inside margins */
+  img, canvas, svg, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Keep table headers repeated when a table spans pages */
+  thead { display: table-header-group !important; }
+  tfoot { display: table-footer-group !important; }
+}
+
+/* Helpers to hide/show for print */
+
+@media print { .print\:hidden { display: none !important; } }
+@media print { .print\:block  { display: block !important; } }
+
+@media print {
+  .page-break-after { break-after: page; page-break-after: always; }
+
+  #report-print {
+    padding: 12mm 8mm 14mm 8mm; /* extra top/bottom space inside the page */
+  }
+}

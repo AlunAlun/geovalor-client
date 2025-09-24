@@ -24,7 +24,7 @@ function FloodRisk({ fluvial, coastal, lat, lon }) {
     <h2>
         Riesgo de Inundación
     </h2>
-    <div className="mb-4 w-full rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
+    <div className="page-break-after mb-4 w-full rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
       {/* Fluvial Flood Risk */}
       <h3>Riesgo de Inundación Fluvial</h3>
       {fluvialError ? (

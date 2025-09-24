@@ -106,7 +106,7 @@ function FireRisk({ fireData, forestData, lat, lon }) {
       </div>
     </div>
     </div>
-    <div className="mb-4 w-full rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
+    <div className="page-break-after mb-4 w-full rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
       <h3>Mapa forestal: </h3>
       <div className="mt-2 mb-1 text-sm text-brand-dark/80 leading-snug">
       {message}
@@ -148,7 +148,7 @@ function FireRisk({ fireData, forestData, lat, lon }) {
             
 
             {image && (
-              <div className="border w-3/4 max-w-full rounded overflow-hidden mx-auto">
+              <div className="page-break-after border w-3/4 max-w-full rounded overflow-hidden mx-auto">
                 <img
                   src={image}
                   alt={`Mapa de incendio ${period}`}
