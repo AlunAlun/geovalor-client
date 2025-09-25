@@ -13,6 +13,7 @@ import ContactPage from "./pages/ContactPage";
 import SampleReportPage from "./pages/SampleReportPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import LegalNoticePage from "./pages/LegalNoticePage";
+import AboutUsPage from "./pages/AboutUsPage";
 import SessionCleanup from "./components/SessionCleanup";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/descargar-ejemplo" element={<SampleReportPage />} />
           <Route path="/privacidad" element={<PrivacyPolicyPage />} />
           <Route path="/aviso-legal" element={<LegalNoticePage />} />
+          <Route path="/sobre-nosotros" element={<AboutUsPage />} />
           <Route
             path="/buscar"
             element={

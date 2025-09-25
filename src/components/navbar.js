@@ -26,6 +26,9 @@ function Navbar() {
             <Link to="/producto" className="font-semibold text-brand-dark hover:text-brand-green">
               Producto
             </Link>
+            <Link to="/sobre-nosotros" className="font-semibold text-brand-dark hover:text-brand-green">
+              Nosotros
+            </Link>
             <Link to="/contacto" className="font-semibold text-brand-dark hover:text-brand-green">
               Contacto
             </Link>
