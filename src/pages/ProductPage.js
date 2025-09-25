@@ -55,7 +55,7 @@ export default function ProductPage() {
                 to="/descargar-ejemplo"
                 className="rounded-xl bg-brand-green px-6 py-3 text-white font-semibold shadow-lg shadow-[#65B37A]/20 hover:bg-brand-dark"
                 >
-                Decargar ejemplo
+                Descargar ejemplo
                 </Link>
                 <Link
                 to="/contacto"
