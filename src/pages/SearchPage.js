@@ -11,8 +11,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 41.27270457818908,
-  lng: 2.0520473550222307,
+  lat: 41.270249994739935,
+  lng: 2.0381947395064706,
 };
 
 function SearchPage() {

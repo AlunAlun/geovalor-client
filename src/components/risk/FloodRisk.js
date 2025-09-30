@@ -4,7 +4,9 @@ import GoogleMapWithOverlay from "./GoogleMapWithOverlay";
 import RiskSlider from "./RiskSlider";
 
 function FloodRisk({ fluvial, coastal, lat, lon }) {
-  const isValidFluvial =
+  console.log("fV")
+  console.log(fluvial)
+  let isValidFluvial =
     fluvial &&
     typeof fluvial === "object" &&
     !Array.isArray(fluvial) &&
@@ -57,18 +59,19 @@ function FloodRisk({ fluvial, coastal, lat, lon }) {
             </tbody>
           </table>
 
-          <GoogleMapWithOverlay
+          
+        </>
+      ) : (
+        <p className="text-red-600 italic mb-4">
+          El servicio MITECO de inundación fluvial no está 100% disponible.
+        </p>
+      )}
+      <GoogleMapWithOverlay
             lat={lat}
             lng={lon}
             showCoastal={false}
             showFluvial={true}
           />
-        </>
-      ) : (
-        <p className="text-red-600 italic mb-4">
-          El servicio MITECO de inundación fluvial no está disponible.
-        </p>
-      )}
       </div>
       <div className="mb-4 w-full rounded-xl border border-brand-green bg-brand-beige p-4 shadow-sm">
 
@@ -120,14 +123,14 @@ function FloodRisk({ fluvial, coastal, lat, lon }) {
 
 
       {/* Combined Coastal Map View */}
-      {isValidCoastal && (
+      {/* {isValidCoastal && ( */}
         <GoogleMapWithOverlay
           lat={lat}
           lng={lon}
           showCoastal={true}
           showFluvial={false}
         />
-      )}
+      {/* )} */}
     </div>
     </>
   );
